@@ -1,0 +1,162 @@
+//variable
+@import "public/scssVariables";
+
+.container {
+  position: relative;
+  min-height: 75vh;
+  padding-bottom: 60px;
+}
+
+//the top of the nav
+.top {
+  height: 10px;
+  background: red;
+  .btn-container {
+    position: absolute;
+    right: 0px;
+    .profile-btn {
+      margin-top: 10px;
+      border: none;
+      background: red;
+      color: white;
+      padding: 2px 20px;
+      outline: none;
+    }
+
+    .logout-btn {
+      margin-top: 10px;
+      border: none;
+      background: red;
+      color: white;
+      padding: 2px 20px;
+      outline: none;
+    }
+  }
+}
+
+.navbar {
+  position: relative;
+  height: 100px;
+  ul {
+    position: relative;
+    left: 20%;
+    top: 30%;
+    li {
+      display: inline-block;
+
+      a {
+        padding: 5px 40px 10px 40px;
+        margin-top: 20px;
+        text-decoration: none;
+        color: $main-font-color;
+        font-size: 35px;
+        border-right: 0.5px rgb(175, 165, 165) solid;
+        &:hover {
+          border-bottom: 4px red solid;
+        }
+        &:focus {
+          border-bottom: 4px red solid;
+        }
+      }
+    }
+    li:last-child {
+      a {
+        border: none;
+        &:hover {
+          border-bottom: 4px red solid;
+        }
+        &:focus {
+          border-bottom: 4px red solid;
+        }
+      }
+    }
+  }
+}
+
+//info pages
+.text-container {
+  width: 60%;
+  position: relative;
+  left: 17%;
+  border: 0.5px red solid;
+  border-radius: 10px;
+  text-align: left;
+  margin-top: 50px;
+  margin-left: 20px;
+  padding: 15px 20px;
+  background: white;
+  color: $main-font-color;
+}
+
+//footer
+.footer-container {
+  position: absolute;
+  right: 15px;
+  bottom: 0;
+  i {
+    display: inline-block;
+    margin-right: 7px;
+    cursor: pointer;
+  }
+  p {
+    display: inline-block;
+  }
+}
+//responsive
+@media all and (max-width: 1076px) {
+  .navbar {
+    ul {
+      left: 10%;
+    }
+  }
+}
+
+@media all and (max-width: 895px) {
+  .navbar {
+    // padding-bottom: 100px;
+    ul {
+      left: 5px;
+      li {
+        a {
+          margin-bottom: 20px;
+          font-size: 30px;
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 766px) {
+  .navbar {
+    ul {
+      li {
+        a {
+          // border: none;
+          padding: 0 20px;
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 579px) {
+  .navbar {
+    ul {
+      li {
+        a {
+          text-decoration: none;
+          color: $main-font-color;
+          font-size: 20x;
+          border: none;
+          padding: 0 10px;
+          &:hover {
+            border-bottom: 4px red solid;
+          }
+          &:focus {
+            border-bottom: 4px red solid;
+          }
+        }
+      }
+    }
+  }
+}

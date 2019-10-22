@@ -1,0 +1,76 @@
+.top {
+  height: 10px;
+  background: red;
+}
+.top .btn-container {
+  position: absolute;
+  right: 0px;
+}
+.top .btn-container .profile-btn {
+  margin-top: 10px;
+  border: none;
+  background: red;
+  color: white;
+  padding: 2px 20px;
+  outline: none;
+}
+.top .btn-container .logout-btn {
+  margin-top: 10px;
+  border: none;
+  background: red;
+  color: white;
+  padding: 2px 20px;
+  outline: none;
+}
+.navbar {
+  height: 100px;
+}
+.navbar ul {
+  position: absolute;
+  left: 20%;
+  top: 30%;
+}
+.navbar ul li {
+  display: inline-block;
+}
+.navbar ul li a {
+  padding: 5px 40px 10px 40px;
+  margin-top: 20px;
+  text-decoration: none;
+  color: #800;
+  font-size: 35px;
+  border-right: 0.5px #afa5a5 solid;
+}
+.navbar ul li a:hover {
+  border-bottom: 4px red solid;
+}
+.navbar ul li a:focus {
+  border-bottom: 4px red solid;
+}
+.navbar ul li:last-child a {
+  border: none;
+}
+.navbar ul li:last-child a:hover {
+  border-bottom: 4px red solid;
+}
+.navbar ul li:last-child a:focus {
+  border-bottom: 4px red solid;
+}
+.footer-container {
+  position: absolute;
+  right: 15px;
+  bottom: 0;
+}
+.text-container {
+  width: 60%;
+  position: relative;
+  left: 260px;
+  border: 0.5px red solid;
+  border-radius: 10px;
+  text-align: left;
+  margin-top: 50px;
+  margin-left: 20px;
+  padding: 15px 20px;
+  background: white;
+  color: #800;
+}

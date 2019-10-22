@@ -4,6 +4,10 @@ const mongoose = require("mongoose");
 const {
   validatePostInput
 } = require("../../../validation/user/validatePostInput");
+const {
+  validateEditInput
+} = require("../../../validation/user/validateEditInput");
+const { validateLogin } = require("../../../validation/user/validateLogin");
 
 const jwt = require("jsonwebtoken");
 
@@ -23,8 +27,16 @@ module.exports.getUsers = (req, res, next) => {
 //access: PUBLIC
 
 module.exports.createUser = async (req, res, next) => {
-  const { email, password, DOB, userType, phone } = req.body;
-  const newUser = new User({ email, password, DOB, userType, phone });
+  const { name, email, password, password2, DOB, bloodType, gender } = req.body;
+  const newUser = new User({
+    name,
+    email,
+    password,
+    password2,
+    DOB,
+    bloodType,
+    gender
+  });
   //validation
   const { isValid, errors } = await validatePostInput(req.body);
   if (!isValid) return res.status(400).json(errors);
@@ -68,19 +80,36 @@ module.exports.getUserById = (req, res, next) => {
     });
 };
 
-module.exports.updateUserById = (req, res, next) => {
+module.exports.updateUserById = async (req, res, next) => {
   const { id } = req.params;
+
   if (!mongoose.Types.ObjectId.isValid(id))
     return res.status(400).json({ message: "invalid id" });
+
+  // validation;
+  const { isValid, errors } = await validateEditInput(req);
+  if (!isValid) return res.status(400).json(errors);
+
   User.findById(id)
     .then(user => {
       if (!user) () => Promise.reject({ status: 404, message: "not found" });
-      const { email, password, DOB, userType, phone } = req.body;
+      const {
+        name,
+        email,
+        // password,
+        // password2,
+        // DOB,
+        bloodType,
+        gender
+      } = req.body;
+
+      user.name = name;
       user.email = email;
-      user.password = password;
-      user.DOB = DOB;
-      user.userType = userType;
-      user.phone = phone;
+      // user.password = password;
+      // user.password2 = password2;
+      // user.DOB = DOB;
+      user.bloodType = bloodType;
+      user.gender = gender;
 
       return user.save();
     })
@@ -102,7 +131,12 @@ module.exports.deleteUserById = (req, res, next) => {
     .catch(err => console.log(err));
 };
 
-module.exports.login = (req, res, next) => {
+module.exports.login = async (req, res, next) => {
+  //validate
+  const { isValid, errors } = await validateLogin(req.body);
+  // console.log(isValid);
+  if (!isValid) return res.status(400).json(errors);
+
   const { email, password } = req.body;
   User.findOne({ email })
     .then(user => {
@@ -110,13 +144,12 @@ module.exports.login = (req, res, next) => {
         return Promise.reject({ status: 404, message: "User not found" });
 
       bcrypt.compare(password, user.password, (err, isMatch) => {
-        if (!isMatch)
-          return res.status(400).json({ message: "Wrong password" });
+        if (!isMatch) return res.status(400).json({ password: "Sai mật khẩu" });
 
         const payload = {
           id: user._id,
           email: user.email,
-          userType: user.userType
+          bloodType: user.bloodType
         };
 
         jwt.sign(
@@ -141,7 +174,6 @@ module.exports.login = (req, res, next) => {
 
 module.exports.uploadAvatar = (req, res, next) => {
   const { id } = req.params; // headers, params, body, file
-  console.log(req.params);
   User.findById(id)
     .then(user => {
       if (!user) return Promise.reject({ status: 404, message: "Not found" });

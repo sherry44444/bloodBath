@@ -1,7 +1,7 @@
 const express = require("express");
 
 const router = express.Router();
-const tripController = require("./controller");
+const donationController = require("./controller");
 const { authenticate, authorize } = require("../../../middlewares/auth");
 
 // const authenticate = (req, res, next) => {
@@ -16,34 +16,39 @@ const { authenticate, authorize } = require("../../../middlewares/auth");
 router.post(
   "/",
   authenticate,
-  authorize(["driver"]),
-  tripController.createTrip
+  // authorize(["driver"]),
+  donationController.createDonation
 );
-router.get("/", tripController.getTrips);
-router.get("/:tripId", tripController.getTripById);
+router.get("/", donationController.getDonations);
+router.get(
+  "/logged_in",
+  authenticate,
+  donationController.getLoggedUserDonation
+);
+router.get("/:donationId", donationController.getDonationById);
 router.delete(
-  "/:tripId",
+  "/:donationId",
   authenticate,
-  authorize(["driver", "admin"]),
-  tripController.deleteTrip
+  // authorize(["driver", "admin"]),
+  donationController.deleteDonation
 );
 router.put(
-  "/:tripId",
+  "/:donationId",
   authenticate,
-  authorize(["driver"]),
-  tripController.updateTripById
+  // authorize(["driver"]),
+  donationController.updateDonationById
 );
 router.put(
-  "/book-trip/:tripId",
+  "/book-donation/:donationId",
   authenticate,
   authorize(["passenger"]),
-  tripController.bookTrip
+  donationController.bookDonation
 );
 router.put(
-  "/finish-trip/:tripId",
+  "/finish-donation/:donationId",
   authenticate,
-  authorize(["driver"]),
-  tripController.finishTrip
+  // authorize(["driver"]),
+  donationController.finishDonation
 );
 
 module.exports = router;

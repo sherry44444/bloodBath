@@ -5,59 +5,55 @@ const { User } = require("../../models/User");
 const validatePostInput = async data => {
   let errors = {};
 
+  data.name = _.get(data, "name", "");
   data.email = _.get(data, "email", "");
   data.password = _.get(data, "password", "");
   data.password2 = _.get(data, "password2", "");
   data.DOB = _.get(data, "DOB", "");
-  data.userType = _.get(data, "userType", "");
-  data.phone = _.get(data, "phone", "");
+  data.gender = _.get(data, "gender", "");
+  data.bloodType = _.get(data, "bloodType", "");
   //gom 2 truong hop undefined va rong ve lam 1 la` string rong~
 
+  //name
+  if (validator.isEmpty(data.name)) {
+    errors.name = "tên là bắt buộc";
+  }
   //email
   if (validator.isEmpty(data.email)) {
-    errors.email = "email is required";
+    errors.email = "email là bắt buộc";
   } else if (!validator.isEmail(data.email)) {
-    errors.email = "email is invalid";
+    errors.email = "email không đúng";
   } else {
     const user = await User.findOne({ email: data.email });
-    if (user) errors.email = "email exists";
+    if (user) errors.email = "email đã tồn tại";
   }
 
   //password
   if (validator.isEmpty(data.password)) {
-    errors.password = "password is required";
+    errors.password = "mật khẩu là bắt buộc";
   } else if (!validator.isLength(data.password, { min: 8 })) {
-    errors.password = "pass needs atleast 8 chars";
+    errors.password = "mật khẩu có ít nhất là 8 ký tự";
   }
 
   if (validator.isEmpty(data.password2)) {
-    errors.password2 = "confirm pass is required";
+    errors.password2 = "xin hãy xác nhận lại mật khẩu";
   } else if (!validator.equals(data.password, data.password2)) {
-    errors.password2 = "confirm pass must matched";
+    errors.password2 = "mật khẩu xác nhận không khớp";
   }
 
   //DOB
-  // if (validator.isEmpty(data.DOB)) {
-  //   errors.DOB = "day of birth is required";
-  // } else if (!_.isDate(data.DOB)) {
-  //   errors.DOB = "invalid day of birth";
-  // }
-
-  //userType
-  if (validator.isEmpty(data.userType)) {
-    errors.userType = "userType is required";
-  } else if (
-    !validator.equals(data.userType, "driver") &&
-    !validator.equals(data.userType, "passenger")
-  ) {
-    errors.userType = "invalid userType";
+  if (validator.isEmpty(data.DOB)) {
+    errors.DOB = "ngày tháng năm sinh là bắt buộc";
   }
 
-  //phone
-  if (validator.isEmpty(data.phone)) {
-    errors.phone = "phone is required";
-  } else if (validator.isLength(data.phone, { min: 10, max: 10 })) {
-    errors.phone = "phone must be 10 digits";
+  //bloodType
+  if (validator.isEmpty(data.bloodType)) {
+    errors.bloodType = 'xin hãy chọn nhóm máu của bạn (hoặc chọn "chưa biết")';
+  }
+
+  //gender
+  if (validator.isEmpty(data.gender)) {
+    errors.gender = "xin hãy chọn giới tính";
   }
 
   return {
