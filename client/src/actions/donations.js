@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const getDonationsByUser = () => {
   return dispatch => {
-    axios.get("http://localhost:8888/api/donations/logged_in").then(res => {
+    axios.get("/api/donations/logged_in").then(res => {
       let pending = [];
       let done = [];
       res.data.map(don => {
@@ -26,7 +26,7 @@ export const getDonationsByUser = () => {
 
 export const deleteDonation = (id, callback1) => {
   return dispatch => {
-    axios.delete(`http://localhost:8888/api/donations/${id}`).then(res => {
+    axios.delete(`/api/donations/${id}`).then(res => {
       console.log(res);
       callback1();
     });

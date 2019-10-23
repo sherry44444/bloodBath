@@ -49,7 +49,7 @@ app.use(express.json());
 app.use("/api/users", userRouter);
 app.use("/api/donations", donationRouter);
 // app.get("/", (req, res) => res.send("hello"));
-const port = process.env.PORT;
+const port = Number(process.env.PORT || 8888);
 
 app.listen(port, () => {
   console.log(`app running on ${port}`);

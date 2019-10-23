@@ -108,7 +108,7 @@ class Profile extends Component {
 
     await axios
       .post(
-        `http://localhost:8888/api/users/upload-avatar/${auth.user.id}`,
+        `/users/upload-avatar/${auth.user.id}`,
         data
       )
       .then(res => {});
@@ -249,7 +249,7 @@ class Profile extends Component {
   //cac btn cua tab "đã ghi danh"
   showFinishModalsAndFinish = async id => {
     await axios.put(
-      `http://localhost:8888/api/donations/finish-donation/${id}`
+      `/donations/finish-donation/${id}`
     );
     this.showModal("waitingModal");
     setTimeout(() => {

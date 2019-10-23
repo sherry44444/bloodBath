@@ -5,7 +5,7 @@ import setHeaders from "../helpers/setHeaders";
 export const createUser = (data, callback1, callback2) => {
   return dispatch => {
     axios
-      .post("http://localhost:8888/api/users", data)
+      .post("/api/users", data)
       .then(res => {
         dispatch({
           type: "GET_ERRORS",
@@ -28,7 +28,7 @@ export const createUser = (data, callback1, callback2) => {
 export const login = (data, callback1, callback2) => {
   return dispatch => {
     axios
-      .post("http://localhost:8888/api/users/login", data)
+      .post("/api/users/login", data)
       .then(res => {
         // dispatch({
         //   type: "GET_ERRORS",
@@ -74,7 +74,7 @@ export const deleteUser = (data, callback) => {
   return dispatch => {
     localStorage.removeItem("token");
     axios
-      .delete(`http://localhost:8888/api/users/${data}`)
+      .delete(`/api/users/${data}`)
       .then(res => {
         dispatch({
           type: "DELETE_USER"
@@ -91,7 +91,7 @@ export const deleteUser = (data, callback) => {
 export const postDonation = (data, callback1) => {
   return dispatch => {
     axios
-      .post("http://localhost:8888/api/donations", data)
+      .post("/api/donations", data)
       .then(res => {
         let arr = [res.data];
 

@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const getUsers = () => {
   return dispatch => {
-    axios.get("http://localhost:8888/api/users").then(res => {
+    axios.get("/api/users").then(res => {
       dispatch({
         type: "GET_USERS",
         payload: res.data
@@ -13,7 +13,7 @@ export const getUsers = () => {
 
 export const getUserById = id => {
   return dispatch => {
-    axios.get(`http://localhost:8888/api/users/${id}`).then(res => {
+    axios.get(`/api/users/${id}`).then(res => {
       dispatch({
         type: "GET_USER",
         payload: res.data
@@ -25,7 +25,7 @@ export const getUserById = id => {
 export const editUser = (id, data, callback1, callback2) => {
   return dispatch => {
     axios
-      .put(`http://localhost:8888/api/users/${id}`, data)
+      .put(`/api/users/${id}`, data)
       .then(res => {
         callback1();
       })
