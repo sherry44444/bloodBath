@@ -14,7 +14,7 @@ const mongoUri =
     : process.env.MONGO_URI_PROD;
 
 mongoose
-  .connect("mongodb://localhost:27017/bloodbath", {
+  .connect("http://localhost:8888", {
     useNewUrlParser: true,
     useCreateIndex: true
   })
