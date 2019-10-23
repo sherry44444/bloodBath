@@ -9,12 +9,12 @@ const path = require("path");
 console.log(process.env.NODE_ENV);
 
 const mongoUri =
-  process.env.NODE_ENV === "dev"
+  process.env.NODE_ENV == "dev"
     ? process.env.MONGO_URI_DEV
     : process.env.MONGO_URI_PROD;
 
 mongoose
-  .connect("http://localhost:8888", {
+  .connect(mongoUri, {
     useNewUrlParser: true,
     useCreateIndex: true
   })
