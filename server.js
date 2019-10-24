@@ -29,34 +29,19 @@ mongoose
 
 const app = express();
 
-app.use(express.static(__dirname + "/client/public"));
-
-// app.get("*", (req, res) => {
-//   res.sendFile(path.resolve(__dirname, "client", "public", "index.html"));
-// });
-
 //cors
 app.use(cors());
-// app.use(function(req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header(
-//     "Access-Control-Allow-Headers",
-//     "Origin, X-Requested-With, Content-Type, Accept, Authorization, fingerprint"
-//   );
-//   res.header("Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, OPTIONS");
-//   next();
-// });
 
 //middleware
 app.use(express.urlencoded({ extended: true }));
 app.use("/uploads", express.static("uploads"));
-// app.use("/static", express.static("client/public"));
+app.use(express.static(__dirname + "/client/public"));
 
 //react form bi mat xxx-urlrecoded nen data no gui di o dang json chu ko bi ma hoa nua nen khi post data dang raw (json) (tu frontedn dang dung react) thi phai dung middleware o duoi
 app.use(express.json());
 app.use("/api/users", userRouter);
 app.use("/api/donations", donationRouter);
-// app.get("/", (req, res) => res.send("hello"));
+
 const port = Number(process.env.PORT || 8888);
 
 app.listen(port, () => {
