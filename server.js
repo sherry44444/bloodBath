@@ -31,6 +31,10 @@ const app = express();
 
 app.use("/", express.static(path.join(__dirname, "client/public")));
 
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "client", "public", "index.html"));
+});
+
 //cors
 app.use(cors());
 // app.use(function(req, res, next) {
