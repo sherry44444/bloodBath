@@ -35,7 +35,10 @@ app.use(cors());
 //middleware
 app.use(express.urlencoded({ extended: true }));
 app.use("/uploads", express.static("uploads"));
-app.use("/", express.static(__dirname + "client/public/index.html"));
+app.get("/", function(req, res) {
+  res.sendFile(path.join(__dirname, "client", "public", "index.html"));
+});
+app.use("/", express.static(__dirname + "client/public"));
 
 //react form bi mat xxx-urlrecoded nen data no gui di o dang json chu ko bi ma hoa nua nen khi post data dang raw (json) (tu frontedn dang dung react) thi phai dung middleware o duoi
 app.use(express.json());
