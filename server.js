@@ -14,10 +14,13 @@ const mongoUri =
     : process.env.MONGO_URI_PROD;
 
 mongoose
-  .connect(mongoUri, {
-    useNewUrlParser: true,
-    useCreateIndex: true
-  })
+  .connect(
+    "mongodb+srv://hxuan.lam@gmail.com:1z2y3x4w5v@cluster0-i4u1s.mongodb.net/test?retryWrites=true&w=majority",
+    {
+      useNewUrlParser: true,
+      useCreateIndex: true
+    }
+  )
   .then(() => {
     console.log("succesful");
     console.log(mongoUri);
