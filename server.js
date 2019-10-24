@@ -29,7 +29,7 @@ mongoose
 
 const app = express();
 
-app.use("/", express.static("public"));
+app.use("/", express.static(path.join(__dirname, "client/public")));
 
 //cors
 app.use(cors());
