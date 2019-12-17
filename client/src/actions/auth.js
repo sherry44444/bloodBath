@@ -6,7 +6,7 @@ import { GET_ERRORS, SET_CURRENT_USER, LOGOUT } from "./types";
 export const createUser = (userData, history) => {
   return dispatch => {
     axios
-      .post("/api/users", userData)
+      .post("api/users", userData)
       .then(res => {
         dispatch({
           type: GET_ERRORS,
@@ -26,7 +26,7 @@ export const createUser = (userData, history) => {
 export const login = data => {
   return dispatch => {
     axios
-      .post("/api/users/login", data)
+      .post("api/users/login", data)
       .then(res => {
         const { token } = res.data;
         // dua jwt len localstorage

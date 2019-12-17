@@ -40,7 +40,7 @@ export const getDonationsByUser = () => {
 export const deleteDonation = (id, reload) => {
   return dispatch => {
     axios
-      .delete(`/api/donations/${id}`)
+      .delete(`api/donations/${id}`)
       .then(res => {
         reload();
       })
