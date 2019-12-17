@@ -17,7 +17,7 @@ console.log(mongoUri);
 
 mongoose
   .connect(
-    "mongodb+srv://hxuan.lam4@gmail.com:1z2y3x4w5v@cluster0-i4u1s.mongodb.net/test?retryWrites=true&w=majority",
+    "mongodb+srv://hxuan.lam4@gmail.com:1z2y3x4w5v6uu@cluster0-i4u1s.mongodb.net/test?retryWrites=true&w=majority",
     {
       useNewUrlParser: true,
       useCreateIndex: true
