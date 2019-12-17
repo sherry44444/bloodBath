@@ -1,0 +1,17 @@
+.edit-page-container {
+  margin-bottom: 150px;
+}
+.edit-page-container .edit-form {
+  position: relative;
+  top: 50px;
+  left: 15%;
+}
+.edit-page-container .edit-form__title {
+  position: relative;
+  text-align: left;
+  left: 22%;
+}
+.edit-page-container .edit-form__btn {
+  position: relative;
+  left: 34%;
+}

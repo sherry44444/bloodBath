@@ -1,62 +1,55 @@
 import axios from "axios";
 import jwtDecode from "jwt-decode";
 import setHeaders from "../helpers/setHeaders";
+import { GET_ERRORS, SET_CURRENT_USER, LOGOUT } from "./types";
 
-export const createUser = (data, callback1, callback2) => {
+export const createUser = (userData, history) => {
   return dispatch => {
     axios
-      .post("/api/users", data)
+      .post("http://localhost:8888/api/users", userData)
       .then(res => {
         dispatch({
-          type: "GET_ERRORS",
+          type: GET_ERRORS,
           payload: {}
         });
-        callback1();
+        history.push("/");
       })
       .catch(err => {
-        if (err.response && err.response.data) {
-          dispatch({
-            type: "GET_ERRORS",
-            payload: err.response.data
-          });
-          callback2();
-        }
+        dispatch({
+          type: GET_ERRORS,
+          payload: err.response.data
+        });
       });
   };
 };
 
-export const login = (data, callback1, callback2) => {
+export const login = data => {
   return dispatch => {
     axios
-      .post("/api/users/login", data)
+      .post("http://localhost:8888/api/users/login", data)
       .then(res => {
-        // dispatch({
-        //   type: "GET_ERRORS",
-        //   payload: {}
-        // });
         const { token } = res.data;
-        console.log(res);
         // dua jwt len localstorage
         localStorage.setItem("token", token);
-
         // decode --> dispatch auth reducer
         const decoded = jwtDecode(token);
-        dispatch({
-          type: "SET_CURRENT_USER",
-          payload: decoded
-        });
-
         // set params token header cua nhung request
         setHeaders({ token });
-        callback1();
+        dispatch({
+          type: SET_CURRENT_USER,
+          payload: decoded
+        });
+        dispatch({
+          type: GET_ERRORS,
+          payload: {}
+        });
       })
       .catch(err => {
         if (err.response && err.response.data) {
           dispatch({
-            type: "GET_ERRORS",
+            type: GET_ERRORS,
             payload: err.response.data
           });
-          callback2();
         }
       });
   };
@@ -65,49 +58,7 @@ export const login = (data, callback1, callback2) => {
 export const logout = () => {
   return dispatch => {
     localStorage.removeItem("token");
-    dispatch({ type: "LOGOUT" });
+    dispatch({ type: LOGOUT });
     setHeaders({});
-  };
-};
-
-export const deleteUser = (data, callback) => {
-  return dispatch => {
-    localStorage.removeItem("token");
-    axios
-      .delete(`/api/users/${data}`)
-      .then(res => {
-        dispatch({
-          type: "DELETE_USER"
-        });
-        setHeaders({});
-        callback();
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-};
-
-export const postDonation = (data, callback1) => {
-  return dispatch => {
-    axios
-      .post("/api/donations", data)
-      .then(res => {
-        let arr = [res.data];
-
-        dispatch({
-          type: "POST_DONATIONS",
-          payload: arr
-        });
-        callback1();
-      })
-      .catch(err => {
-        dispatch({
-          type: "GET_ERRORS",
-          payload: err.response.data
-        });
-      });
-
-    // callback2();
   };
 };

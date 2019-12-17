@@ -1,0 +1,14 @@
+.tabs {
+  position: absolute;
+  top: 150px;
+  left: 45%;
+  text-align: left;
+}
+.donation-form {
+  position: relative;
+  left: 50px;
+}
+.donation-form__btn {
+  float: right;
+  left: 5px;
+}

@@ -1,0 +1,14 @@
+export const GET_ERRORS = "GET_ERRORS";
+export const SET_CURRENT_USER = "SET_CURRENT_USER";
+export const LOGOUT = "LOGOUT";
+export const GET_USERS = "GET_USERS";
+export const GET_USER = "GET_USER";
+export const SET_STATUS = "SET_STATUS";
+export const DELETE_USER = "DELETE_USER";
+export const POST_DONATION = "POST_DONATION";
+export const GET_DONATIONS = "GET_DONATIONS";
+export const CLEAR_CURRENT_PROFILE = "CLEAR_CURRENT_PROFILE";
+export const POST_USER_INFO = "POST_USER_INFO";
+export const GET_USER_INFO = "GET_USER_INFO";
+export const EDIT_USER_INFO = "GET_USER_INFO";
+export const DONATION_TO_TICKET = "DONATION_TO_TICKET";

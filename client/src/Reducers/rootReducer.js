@@ -1,9 +1,14 @@
 import { combineReducers } from "redux";
-import users from "./users";
 import auth from "./auth";
 import errors from "./errors";
 import donations from "./donations";
+import users from "./users";
 
-const rootReducer = combineReducers({ users, auth, errors, donations });
+const rootReducer = combineReducers({
+  auth,
+  errors,
+  donations,
+  users
+});
 
 export default rootReducer;

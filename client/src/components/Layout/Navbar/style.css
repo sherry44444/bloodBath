@@ -1,0 +1,16 @@
+.navbar__logo {
+  position: absolute;
+  left: 10px;
+  font-size: 10px;
+}
+.navbar__logo button {
+  background: none;
+  border: none;
+  font-size: 20px;
+}
+.navbar__logo button:focus {
+  outline: none;
+}
+.navbar__logo button:hover {
+  cursor: pointer;
+}

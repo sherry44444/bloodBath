@@ -1,16 +1,18 @@
-const initialState = {
-  pending: [],
-  history: []
-};
+import {
+  POST_DONATION,
+  GET_DONATIONS,
+  DONATION_TO_TICKET
+} from "../actions/types";
+const initialState = [];
 
 const donationReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "POST_DONATIONS":
-      return { ...state, pending: [...state.pending, ...action.payload] };
-    case "GET_PENDING":
-      return { ...state, pending: [...action.payload] };
-    case "GET_HISTORY":
-      return { ...state, history: [...action.payload] };
+    case POST_DONATION:
+      return [...state, action.payload];
+    case GET_DONATIONS:
+      return action.payload;
+    case DONATION_TO_TICKET:
+      return action.payload;
     default:
       return state;
   }

@@ -8,10 +8,14 @@ const validatePostInput = async data => {
   data.name = _.get(data, "name", "");
   data.email = _.get(data, "email", "");
   data.password = _.get(data, "password", "");
-  data.password2 = _.get(data, "password2", "");
+  data.confirmPassword = _.get(data, "confirmPassword", "");
   data.DOB = _.get(data, "DOB", "");
   data.gender = _.get(data, "gender", "");
   data.bloodType = _.get(data, "bloodType", "");
+  data.personalCard = _.get(data, "personalCard", "");
+  data.personalCardLocation = _.get(data, "personalCardLocation", "");
+  data.address = _.get(data, "address", "");
+  data.phone = _.get(data, "phone", "");
   //gom 2 truong hop undefined va rong ve lam 1 la` string rong~
 
   //name
@@ -35,10 +39,10 @@ const validatePostInput = async data => {
     errors.password = "mật khẩu có ít nhất là 8 ký tự";
   }
 
-  if (validator.isEmpty(data.password2)) {
-    errors.password2 = "xin hãy xác nhận lại mật khẩu";
-  } else if (!validator.equals(data.password, data.password2)) {
-    errors.password2 = "mật khẩu xác nhận không khớp";
+  if (validator.isEmpty(data.confirmPassword)) {
+    errors.confirmPassword = "xin hãy xác nhận lại mật khẩu";
+  } else if (!validator.equals(data.password, data.confirmPassword)) {
+    errors.confirmPassword = "mật khẩu xác nhận không khớp";
   }
 
   //DOB
@@ -48,12 +52,34 @@ const validatePostInput = async data => {
 
   //bloodType
   if (validator.isEmpty(data.bloodType)) {
-    errors.bloodType = 'xin hãy chọn nhóm máu của bạn (hoặc chọn "chưa biết")';
+    errors.bloodType = "xin hãy chọn nhóm máu của bạn";
   }
 
   //gender
   if (validator.isEmpty(data.gender)) {
     errors.gender = "xin hãy chọn giới tính";
+  }
+  //personalCard
+  if (validator.isEmpty(data.personalCard)) {
+    errors.personalCard = "xin hãy nhập số CMND";
+  }
+  if (/[^0-9]/.test(data.personalCard)) {
+    errors.personalCard = "số CMND không đúng";
+  }
+  //personalCardLocation
+  if (validator.isEmpty(data.personalCardLocation)) {
+    errors.personalCardLocation = "xin hãy nhập nơi cấp CMND";
+  }
+  //address
+  if (validator.isEmpty(data.address)) {
+    errors.address = "xin hãy nhập địa chỉ";
+  }
+  //phone
+  if (validator.isEmpty(data.phone)) {
+    errors.phone = "xin hãy nhập số điện thoại";
+  }
+  if (/[^0-9]/.test(data.phone)) {
+    errors.phone = "số điện thoại không đúng";
   }
 
   return {

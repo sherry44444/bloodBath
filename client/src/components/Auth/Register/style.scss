@@ -1,0 +1,29 @@
+.requires {
+  position: absolute;
+  top: 100px;
+  left: 130px;
+  text-align: left;
+  max-width: 300px;
+}
+
+.register-form {
+  display: grid;
+  grid-template-columns: 40% 40%;
+  grid-template-rows: 10% 80% 10%;
+  position: relative;
+  width: 70%;
+  top: 50px;
+  left: 500px;
+  &__title {
+    justify-self: start;
+    grid-column: 1 / 3;
+  }
+  &__input-group {
+    justify-self: start;
+  }
+  &__btn {
+    justify-self: end;
+    grid-column: 1/3;
+    right: 40px;
+  }
+}

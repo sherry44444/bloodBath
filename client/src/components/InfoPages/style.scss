@@ -1,0 +1,75 @@
+.mission {
+  height: 100vh;
+  &__hero-image {
+    position: absolute;
+    margin: auto;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      url("../../image//mission-pic.jpg");
+    top: 50px;
+    left: 30%;
+    height: 40%;
+    width: 40%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}
+
+.vision {
+  height: 100vh;
+  &__hero-image {
+    position: absolute;
+    margin: auto;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      url("../../image//vision-pic.jpg");
+    top: 50px;
+    left: 30%;
+    height: 40%;
+    width: 40%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}
+.about {
+  height: 100vh;
+  &__hero-image {
+    position: absolute;
+    margin: auto;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      url("../../image//about-pic.jpg");
+    top: 50px;
+    left: 30%;
+    height: 40%;
+    width: 40%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}
+
+.mission,
+.vision,
+.about {
+  &__hero-title {
+    position: relative;
+    top: 100px;
+    color: white;
+  }
+
+  &__content-container {
+    z-index: -1;
+    top: 200px;
+    width: 50%;
+    position: relative;
+    margin: auto;
+    margin-top: 20px;
+    padding-bottom: 20px;
+    border: 1px solid rgb(156, 157, 165);
+    border-radius: 10px;
+  }
+
+  &__content {
+    margin: 100px 10px 100px 10px;
+  }
+}

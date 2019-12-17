@@ -8,12 +8,8 @@ const {
   validateEditInput
 } = require("../../../validation/user/validateEditInput");
 const { validateLogin } = require("../../../validation/user/validateLogin");
-
 const jwt = require("jsonwebtoken");
 
-//route: GET {host}/api/users
-//get list of users
-//acess: PUBLIC
 module.exports.getUsers = (req, res, next) => {
   User.find()
     .then(users => {
@@ -22,20 +18,32 @@ module.exports.getUsers = (req, res, next) => {
     .catch(err => res.json(err));
 };
 
-//route:  POST {host}/api/users
-//create new user
-//access: PUBLIC
-
 module.exports.createUser = async (req, res, next) => {
-  const { name, email, password, password2, DOB, bloodType, gender } = req.body;
+  const {
+    name,
+    email,
+    password,
+    confirmPassword,
+    DOB,
+    bloodType,
+    gender,
+    personalCard,
+    personalCardLocation,
+    address,
+    phone
+  } = req.body;
   const newUser = new User({
     name,
     email,
     password,
-    password2,
+    confirmPassword,
     DOB,
     bloodType,
-    gender
+    gender,
+    personalCard,
+    personalCardLocation,
+    address,
+    phone
   });
   //validation
   const { isValid, errors } = await validatePostInput(req.body);
@@ -56,60 +64,50 @@ module.exports.createUser = async (req, res, next) => {
         .catch(err => console.log(err));
     });
   });
-
-  //data = rq.body
-
-  // newUser
-  //   .save()
-  //   .then(user => {
-  //     res.status(200).json(user);
-  //   })
-  //   .catch(err => res.json(err));
 };
 
-module.exports.getUserById = (req, res, next) => {
-  const { id } = req.params;
-  User.findById(id)
+module.exports.getUser = (req, res, next) => {
+  User.findById(req.user.id)
     .then(user => {
       if (!user)
         () => Promise.reject({ status: 404, message: "user not found" });
       res.status(200).json(user);
     })
     .catch(err => {
+      console.log(err);
       res.status(err.status).json({ message: err.message });
     });
 };
 
-module.exports.updateUserById = async (req, res, next) => {
-  const { id } = req.params;
-
-  if (!mongoose.Types.ObjectId.isValid(id))
-    return res.status(400).json({ message: "invalid id" });
-
+module.exports.editUser = async (req, res, next) => {
   // validation;
-  const { isValid, errors } = await validateEditInput(req);
+  const { isValid, errors } = await validateEditInput(req.body, req.user.email);
   if (!isValid) return res.status(400).json(errors);
 
-  User.findById(id)
+  User.findById(req.user.id)
     .then(user => {
       if (!user) () => Promise.reject({ status: 404, message: "not found" });
       const {
         name,
         email,
-        // password,
-        // password2,
-        // DOB,
         bloodType,
-        gender
+        gender,
+        DOB,
+        personalCard,
+        personalCardLocation,
+        address,
+        phone
       } = req.body;
 
       user.name = name;
       user.email = email;
-      // user.password = password;
-      // user.password2 = password2;
-      // user.DOB = DOB;
       user.bloodType = bloodType;
       user.gender = gender;
+      user.DOB = DOB;
+      user.personalCard = personalCard;
+      user.personalCardLocation = personalCardLocation;
+      user.address = address;
+      user.phone = phone;
 
       return user.save();
     })
@@ -122,26 +120,22 @@ module.exports.updateUserById = async (req, res, next) => {
     });
 };
 
-module.exports.deleteUserById = (req, res, next) => {
-  const { id } = req.params;
-  if (!mongoose.Types.ObjectId.isValid(id))
-    return res.status(400).json({ message: "invalid id" });
-  User.deleteOne({ _id: id })
-    .then(users => res.status(200).json(users))
+module.exports.deleteUser = (req, res, next) => {
+  User.deleteOne({ _id: req.user.id })
+    .then(result => res.status(200).json(result))
     .catch(err => console.log(err));
 };
 
 module.exports.login = async (req, res, next) => {
   //validate
   const { isValid, errors } = await validateLogin(req.body);
-  // console.log(isValid);
   if (!isValid) return res.status(400).json(errors);
 
   const { email, password } = req.body;
   User.findOne({ email })
     .then(user => {
       if (!user)
-        return Promise.reject({ status: 404, message: "User not found" });
+        return Promise.reject({ status: 404, message: "user not found" });
 
       bcrypt.compare(password, user.password, (err, isMatch) => {
         if (!isMatch) return res.status(400).json({ password: "Sai mật khẩu" });
@@ -173,8 +167,7 @@ module.exports.login = async (req, res, next) => {
 };
 
 module.exports.uploadAvatar = (req, res, next) => {
-  const { id } = req.params; // headers, params, body, file
-  User.findById(id)
+  User.findById(req.user.id)
     .then(user => {
       if (!user) return Promise.reject({ status: 404, message: "Not found" });
 

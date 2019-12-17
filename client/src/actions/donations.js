@@ -1,34 +1,58 @@
 import axios from "axios";
+import {
+  GET_ERRORS,
+  POST_DONATION,
+  GET_DONATIONS,
+  DONATION_TO_TICKET
+} from "./types";
+
+export const postDonation = (data, showModal) => {
+  return dispatch => {
+    axios
+      .post("http://localhost:8888/api/donations", data)
+      .then(res => {
+        dispatch({
+          type: POST_DONATION,
+          payload: res.data
+        });
+        showModal();
+      })
+      .catch(err => {
+        dispatch({
+          type: GET_ERRORS,
+          payload: err.response.data
+        });
+      });
+  };
+};
 
 export const getDonationsByUser = () => {
   return dispatch => {
-    axios.get("/api/donations/logged_in").then(res => {
-      let pending = [];
-      let done = [];
-      res.data.map(don => {
-        if (don.isFinished === true) {
-          done.push(don);
-        } else {
-          pending.push(don);
-        }
-      });
+    axios.get("http://localhost:8888/api/donations/").then(res => {
       dispatch({
-        type: "GET_PENDING",
-        payload: pending
-      });
-      dispatch({
-        type: "GET_HISTORY",
-        payload: done
+        type: GET_DONATIONS,
+        payload: res.data
       });
     });
   };
 };
 
-export const deleteDonation = (id, callback1) => {
+export const deleteDonation = (id, reload) => {
   return dispatch => {
-    axios.delete(`/api/donations/${id}`).then(res => {
-      console.log(res);
-      callback1();
+    axios
+      .delete(`http://localhost:8888/api/donations/${id}`)
+      .then(res => {
+        reload();
+      })
+      .catch(err => console.log(err));
+  };
+};
+
+export const takeDonationToTicket = donation => {
+  return dispatch => {
+    dispatch({
+      type: DONATION_TO_TICKET,
+      payload: donation
     });
   };
 };

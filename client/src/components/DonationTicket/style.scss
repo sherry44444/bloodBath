@@ -1,0 +1,39 @@
+.ticket {
+  margin: auto;
+  margin-top: 20px;
+  width: 40%;
+
+  &__info-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    hr {
+      flex-basis: 100%;
+      height: 0;
+      margin: 0;
+      border: 0;
+    }
+  }
+  &__request,
+  &__question {
+    p {
+      max-width: 70%;
+    }
+    display: flex;
+    justify-content: space-between;
+    text-align: left;
+  }
+
+  &__option {
+    display: inline-block;
+    margin-left: 7px;
+  }
+
+  &__radio {
+    margin-left: 18px;
+  }
+
+  &__print-button {
+    margin-top: 20px;
+  }
+}

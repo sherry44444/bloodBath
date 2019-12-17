@@ -1,0 +1,18 @@
+.navbar {
+  &__logo {
+    position: absolute;
+    left: 10px;
+    font-size: 10px;
+    button {
+      background: none;
+      border: none;
+      font-size: 20px;
+    }
+    button:focus {
+      outline: none;
+    }
+    button:hover {
+      cursor: pointer;
+    }
+  }
+}

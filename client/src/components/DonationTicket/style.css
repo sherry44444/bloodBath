@@ -1,0 +1,36 @@
+.ticket {
+  margin: auto;
+  margin-top: 20px;
+  width: 40%;
+}
+.ticket__info-box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.ticket__info-box hr {
+  flex-basis: 100%;
+  height: 0;
+  margin: 0;
+  border: 0;
+}
+.ticket__request,
+.ticket__question {
+  display: flex;
+  justify-content: space-between;
+  text-align: left;
+}
+.ticket__request p,
+.ticket__question p {
+  max-width: 70%;
+}
+.ticket__option {
+  display: inline-block;
+  margin-left: 7px;
+}
+.ticket__radio {
+  margin-left: 18px;
+}
+.ticket__print-button {
+  margin-top: 20px;
+}

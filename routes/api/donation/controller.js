@@ -1,5 +1,4 @@
 const { Donation } = require("../../../models/Donation");
-const mongoose = require("mongoose");
 const {
   validatePostDonation
 } = require("../../../validation/donation/validatePostDonation");
@@ -35,11 +34,11 @@ module.exports.getLoggedUserDonation = (req, res, next) => {
     .catch(err => res.json(err));
 };
 
-module.exports.getDonations = (req, res, next) => {
-  Donation.find()
-    .then(donations => res.status(200).json(donations))
-    .catch(err => res.json(err));
-};
+// module.exports.getDonations = (req, res, next) => {
+//   Donation.find()
+//     .then(donations => res.status(200).json(donations))
+//     .catch(err => res.json(err));
+// };
 
 module.exports.getDonationById = (req, res, next) => {
   const { donationId } = req.params;

@@ -1,6 +1,19 @@
+body {
+  margin-bottom: 150px;
+  overflow-x: hidden;
+}
+
 .App {
   text-align: center;
-  font-family: "Taviraj", serif;
+}
+
+.login-page {
+  position: relative;
+  background: url("./image//bigstock-charity-health-care-donation-2.png")
+    no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
 }
 
 .App-logo {

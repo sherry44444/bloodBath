@@ -1,6 +1,5 @@
 const _ = require("lodash");
 const validator = require("validator");
-const { User } = require("../../models/User");
 
 const validatePostDonation = data => {
   let errors = {};
@@ -12,7 +11,7 @@ const validatePostDonation = data => {
     errors.location = "xin hãy chọn địa điểm";
   }
 
-  if (validator.isEmpty(data.donationTime)) {
+  if (_.isEmpty(data.donationTime)) {
     errors.donationTime = "xin hãy chọn thời gian định sẵn theo lịch";
   }
 
