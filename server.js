@@ -13,11 +13,9 @@ const mongoUri =
     ? process.env.MONGO_URI_DEV
     : process.env.MONGO_URI_PROD;
 
-console.log(mongoUri);
-
 mongoose
   .connect(
-    "mongodb+srv://hxuan.lam4@gmail.com:1z2y3x4w5v6uu@cluster0-i4u1s.mongodb.net/test?retryWrites=true&w=majority",
+    "mongodb+srv://admin:admin@cluster0-i4u1s.mongodb.net/test?retryWrites=true&w=majority",
     {
       useNewUrlParser: true,
       useCreateIndex: true
@@ -37,9 +35,9 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use("/uploads", express.static("uploads"));
 app.use(express.static("client/build"));
-app.get("*", function(req, res) {
-  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-});
+// app.get("*", function(req, res) {
+//   res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+// });
 
 //react form bi mat xxx-urlrecoded nen data no gui di o dang json chu ko bi ma hoa nua nen khi post data dang raw (json) (tu frontedn dang dung react) thi phai dung middleware o duoi
 app.use(express.json());
