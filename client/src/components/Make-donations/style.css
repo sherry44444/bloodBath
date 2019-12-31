@@ -2,7 +2,27 @@
   position: absolute;
   top: 150px;
   left: 45%;
+  width: 500px;
   text-align: left;
+}
+@media all and (max-width: 1100px) {
+  .tabs {
+    left: 35%;
+  }
+}
+@media all and (max-width: 900px) {
+  .tabs {
+    top: 50px;
+    position: relative;
+    left: auto;
+    margin: auto;
+    margin-bottom: 70px;
+  }
+}
+@media all and (max-width: 625px) {
+  .tabs {
+    width: 450px;
+  }
 }
 .donation-form {
   position: relative;
@@ -11,4 +31,9 @@
 .donation-form__btn {
   float: right;
   left: 5px;
+}
+@media all and (max-width: 625px) {
+  .donation-form__btn {
+    float: none;
+  }
 }

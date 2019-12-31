@@ -1,35 +1,29 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Typography, Radio, Button } from "antd";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
-import html2pdf from "html2pdf.js";
 import moment from "moment";
 
 import "./style.scss";
-const { Title, Text } = Typography;
+const { Title } = Typography;
 
 class Ticket extends Component {
   makePDF = () => {
     let element = document.getElementById("ticket");
-    let opt = {
-      margin: [20, -25, 0, -25]
-    };
-    html2pdf()
-      .set(opt)
-      .from(element)
-      .save();
+    html2canvas(element).then(function(canvas) {
+      var img = canvas.toDataURL("image/png");
+
+      const doc = new jsPDF("p", "mm", "letter");
+      doc.addImage(img, "PNG", 30, 30);
+      doc.save("test.pdf");
+    });
   };
 
   render() {
     const { user } = this.props.user;
     const { donation } = this.props;
-    const yesNoRadio = (
-      <Radio.Group>
-        <Radio className="ticket__radio" value="yes"></Radio>
-        <Radio className="ticket__radio" value="no"></Radio>
-      </Radio.Group>
-    );
     return (
       <div>
         <div id="ticket" className="ticket">
@@ -79,44 +73,6 @@ class Ticket extends Component {
               này.
             </strong>
           </div>
-          <div className="ticket__question-list">
-            <div className="ticket__request">
-              <Text>
-                Xin hãy chọn "Có" hoặc "Không" đối với mỗi câu hỏi dưới đây
-              </Text>
-              <div>
-                <strong className="ticket__option">Có</strong>
-                <strong className="ticket__option">Không</strong>
-              </div>
-            </div>
-            <div className="ticket__question">
-              <strong>Bạn đã từng đi hiến máu?</strong>
-              {yesNoRadio}
-            </div>
-            <div className="ticket__question">
-              <p>
-                <strong>Bạn đã từng mắc các bệnh như</strong> hô hấp, tiêu hóa,
-                vàng da/viêm gan, tim mạch, huyết áp thấp/cao, bệnh thận, ho kéo
-                dài, bệnh máu, lao, ung thư,.v.v?
-              </p>
-              {yesNoRadio}
-            </div>
-            <div className="ticket__question">
-              <strong>Trong vòng 6 tháng gần đây, Bạn có:</strong>
-            </div>
-            <div className="ticket__question">
-              <p>Phẫu thuật?</p>
-              {yesNoRadio}
-            </div>
-            <div id="ticket__after-pagebreak" className="ticket__question">
-              <p>Được truyền máu, chế phẩm máu?</p>
-              {yesNoRadio}
-            </div>
-            <div className="ticket__question">
-              <p>Tiêm vắc xin phòng bệnh? Loại vắc xin:.…………………</p>
-              {yesNoRadio}
-            </div>
-          </div>
         </div>
         <Button
           type="primary"
@@ -130,12 +86,14 @@ class Ticket extends Component {
   }
 }
 
+Ticket.propTypes = {
+  user: PropTypes.object.isRequired,
+  donation: PropTypes.object.isRequired
+};
+
 const mapStateToProps = state => ({
   user: state.users,
   donation: state.donations
 });
 
-export default connect(
-  mapStateToProps,
-  null
-)(Ticket);
+export default connect(mapStateToProps, null)(Ticket);

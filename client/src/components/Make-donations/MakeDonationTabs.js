@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Card } from "antd";
 import { getDonationsByUser } from "../../actions/donations";
@@ -40,7 +41,6 @@ class MakeDonationTabs extends Component {
     return (
       <Card
         className="tabs"
-        style={{ width: "500px" }}
         tabList={tabList}
         activeTabKey={this.state.noTitleKey}
         onTabChange={key => {
@@ -53,11 +53,15 @@ class MakeDonationTabs extends Component {
   }
 }
 
+MakeDonationTabs.propTypes = {
+  donations: PropTypes.object.isRequired,
+  getDonationsByUser: PropTypes.func.isRequired
+};
+
 const mapStateToProps = state => ({
   donations: state.donations
 });
 
-export default connect(
-  mapStateToProps,
-  { getDonationsByUser }
-)(MakeDonationTabs);
+export default connect(mapStateToProps, { getDonationsByUser })(
+  MakeDonationTabs
+);

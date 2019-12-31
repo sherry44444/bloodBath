@@ -1,11 +1,12 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { logout } from "../../../actions/auth";
 import { clearCurrentProfile } from "../../../actions/user";
 import { Menu, Typography } from "antd";
 import "./style.scss";
-const { Title } = Typography;
+const { Title, Text } = Typography;
 
 class Navbar extends Component {
   state = {
@@ -33,13 +34,13 @@ class Navbar extends Component {
           mode="horizontal"
         >
           {isAuthenticated ? (
-            <Title level={3} className="navbar__logo">
+            <Text level={1} className="navbar__logo">
               <Link to="/profile">BloodBath</Link>
-            </Title>
+            </Text>
           ) : (
-            <Title level={3} className="navbar__logo">
+            <Text level={1} className="navbar__logo">
               <Link to="/">BloodBath</Link>
-            </Title>
+            </Text>
           )}
           <Menu.Item key="mission">
             <Link to="/mission">Sứ mệnh</Link>
@@ -62,6 +63,12 @@ class Navbar extends Component {
     );
   }
 }
+
+Navbar.propTypes = {
+  auth: PropTypes.object.isRequired,
+  logout: PropTypes.func.isRequired,
+  clearCurrentProfile: PropTypes.func.isRequired
+};
 
 const mapStateToProps = state => ({
   auth: state.auth

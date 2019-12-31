@@ -2,7 +2,14 @@
   &__logo {
     position: absolute;
     left: 10px;
-    font-size: 10px;
+    font-size: 30px;
+    @media all and (max-width: 720px) {
+      font-size: 20px;
+    }
+    @media all and (max-width: 600px) {
+      position: relative;
+      font-size: 20px;
+    }
     button {
       background: none;
       border: none;

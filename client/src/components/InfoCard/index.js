@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Card, Icon, Avatar, Typography } from "antd";
@@ -106,5 +107,11 @@ class InfoCard extends Component {
     );
   }
 }
+
+InfoCard.propTypes = {
+  user: PropTypes.object.isRequired,
+  deleteUser: PropTypes.func.isRequired,
+  uploadAvatar: PropTypes.func.isRequired
+};
 
 export default connect(null, { uploadAvatar })(InfoCard);

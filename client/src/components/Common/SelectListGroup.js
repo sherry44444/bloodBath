@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Form, Select } from "antd";
 
 const { Option } = Select;
@@ -30,6 +31,17 @@ const SelectListGroup = ({
       </Select>
     </Form.Item>
   );
+};
+
+SelectListGroup.propTypes = {
+  name: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  options: PropTypes.object.isRequired,
+  placeholder: PropTypes.string,
+  error: PropTypes.string,
+
+  onChange: PropTypes.func.isRequired
 };
 
 export default Form.create({ name: "register" })(SelectListGroup);

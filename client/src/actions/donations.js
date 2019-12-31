@@ -9,7 +9,7 @@ import {
 export const postDonation = (data, showModal) => {
   return dispatch => {
     axios
-      .post("api/donations", data)
+      .post("http://localhost:8888/api/donations", data)
       .then(res => {
         dispatch({
           type: POST_DONATION,
@@ -28,7 +28,7 @@ export const postDonation = (data, showModal) => {
 
 export const getDonationsByUser = () => {
   return dispatch => {
-    axios.get("api/donations/").then(res => {
+    axios.get("http://localhost:8888/api/donations/").then(res => {
       dispatch({
         type: GET_DONATIONS,
         payload: res.data
@@ -40,7 +40,7 @@ export const getDonationsByUser = () => {
 export const deleteDonation = (id, reload) => {
   return dispatch => {
     axios
-      .delete(`api/donations/${id}`)
+      .delete(`http://localhost:8888/api/donations/${id}`)
       .then(res => {
         reload();
       })

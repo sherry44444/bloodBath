@@ -6,6 +6,11 @@
   top: 50px;
   left: 15%;
 }
+@media all and (max-width: 600px) {
+  .edit-page-container .edit-form {
+    left: 7%;
+  }
+}
 .edit-page-container .edit-form__title {
   position: relative;
   text-align: left;
@@ -14,4 +19,9 @@
 .edit-page-container .edit-form__btn {
   position: relative;
   left: 34%;
+}
+@media all and (max-width: 600px) {
+  .edit-page-container .edit-form__btn {
+    left: auto;
+  }
 }

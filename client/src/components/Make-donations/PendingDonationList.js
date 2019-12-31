@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { deleteDonation, takeDonationToTicket } from "../../actions/donations";
@@ -72,6 +73,12 @@ class PendingDonationList extends Component {
     );
   }
 }
+
+PendingDonationList.propTypes = {
+  donations: PropTypes.object.isRequired,
+  deleteDonation: PropTypes.func.isRequired,
+  takeDonationInfoToTicket: PropTypes.func.isRequired
+};
 
 export default connect(null, { deleteDonation, takeDonationToTicket })(
   PendingDonationList

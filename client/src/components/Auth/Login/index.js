@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Form, Button, Typography } from "antd";
@@ -9,7 +10,7 @@ import "./style.scss";
 
 import { login } from "../../../actions/auth";
 
-const { Title, Text } = Typography;
+const { Title } = Typography;
 
 class Login extends Component {
   constructor(props) {
@@ -57,9 +58,8 @@ class Login extends Component {
       <div className="login-page">
         <div className="login-page__content">
           <h1 level={1}>Chào mừng</h1>
-          <Text>Hãy cùng chung tay</Text>
-          <br />
-          <Text>Hiến máu cứu người</Text>
+          <p>Hãy cùng chung tay</p>
+          <p>Hiến máu cứu người</p>
         </div>
         <div className="login-page__form-container">
           <Title level={2}>Đăng nhập</Title>
@@ -71,7 +71,7 @@ class Login extends Component {
               value={this.state.email}
               placeholder="Email"
               onChange={this.onChange}
-              style={{ width: 250 }}
+              style={{ width: 230 }}
               error={this.state.errors.email}
             ></FormInputGroup>
             <FormInputGroup
@@ -81,7 +81,7 @@ class Login extends Component {
               value={this.state.password}
               placeholder="Mật khẩu"
               onChange={this.onChange}
-              style={{ width: 250 }}
+              style={{ width: 230 }}
               error={this.state.errors.password}
             ></FormInputGroup>
             <Form.Item>
@@ -100,6 +100,12 @@ class Login extends Component {
     );
   }
 }
+
+Login.propTypes = {
+  login: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+};
 
 const mapStateToProps = state => {
   return {

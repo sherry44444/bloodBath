@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import MakeDonationTabs from "../../Make-donations/MakeDonationTabs";
 import InfoCard from "../../InfoCard/";
@@ -23,7 +24,7 @@ class Profile extends Component {
       userContent = <Spinner></Spinner>;
     } else {
       userContent = (
-        <div>
+        <div className="profile">
           <InfoCard user={user} deleteUser={this.deleteUser}></InfoCard>
           <MakeDonationTabs></MakeDonationTabs>
         </div>
@@ -33,11 +34,16 @@ class Profile extends Component {
   }
 }
 
+Profile.propTypes = {
+  getCurrentUser: PropTypes.func.isRequired,
+  deleteUser: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired
+};
+
 const mapStateToProps = state => ({
   user: state.users
 });
 
-export default connect(
-  mapStateToProps,
-  { getCurrentUser, deleteUser }
-)(Profile);
+export default connect(mapStateToProps, { getCurrentUser, deleteUser })(
+  Profile
+);

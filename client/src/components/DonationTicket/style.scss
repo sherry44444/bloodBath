@@ -1,4 +1,6 @@
+@import url("https://fonts.googleapis.com/css?family=Spectral&display=swap");
 .ticket {
+  // font-family: "Spectral", serif;
   margin: auto;
   margin-top: 20px;
   width: 40%;
@@ -35,5 +37,6 @@
 
   &__print-button {
     margin-top: 20px;
+    margin-bottom: 50px;
   }
 }

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Form, Button, Modal } from "antd";
 import SelectListGroup from "../Common/SelectListGroup";
@@ -74,9 +75,9 @@ class MakeDonationForm extends Component {
     ];
 
     const donationTimeList = [
-      { label: "01/12/2019", value: "01/12/2019" },
-      { label: "08/12/2019", value: "08/12/2019" },
-      { label: "15/12/2019", value: "15/12/2019" }
+      { label: "12/01/2020", value: "12/01/2020" },
+      { label: "19/01/2020", value: "19/01/2020" },
+      { label: "26/01/2020", value: "26/01/2020" }
     ];
 
     return (
@@ -98,7 +99,7 @@ class MakeDonationForm extends Component {
           <SelectListGroup
             name="donationTime"
             defautValue=""
-            placeholder="Xin hãy chọn thời gian"
+            placeholder="Xin hãy chọn thời gian theo lịch"
             value={this.state.donationTime}
             onChange={this.onChange}
             options={donationTimeList}
@@ -126,6 +127,11 @@ class MakeDonationForm extends Component {
     );
   }
 }
+
+MakeDonationForm.propTypes = {
+  errors: PropTypes.object.isRequired,
+  postDonation: PropTypes.func.isRequired
+};
 
 const mapStateToProps = state => ({
   errors: state.errors

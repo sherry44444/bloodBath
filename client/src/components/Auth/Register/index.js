@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Typography, Form, Button } from "antd";
 import FormInputGroup from "../../Common/FormInputGroup";
@@ -9,10 +10,7 @@ import {
   genderOptions,
   bloodTypeOptions
 } from "../../../common-data/OptionList";
-import {
-  formItemLayout,
-  tailFormItemLayout
-} from "../../../common-data/formLayoutData";
+import { formItemLayout } from "../../../common-data/formLayoutData";
 
 import "./style.scss";
 
@@ -77,7 +75,7 @@ class Register extends Component {
     const { errors } = this.state;
 
     return (
-      <div>
+      <div className="container">
         <Typography className="requires">
           <Title level={3}>Điều kiện hiến máu</Title>
           <Paragraph>
@@ -218,11 +216,13 @@ class Register extends Component {
   }
 }
 
+Register.propTypes = {
+  createUser: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired
+};
+
 const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(
-  mapStateToProps,
-  { createUser }
-)(Register);
+export default connect(mapStateToProps, { createUser })(Register);

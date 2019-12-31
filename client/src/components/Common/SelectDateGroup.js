@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Form, DatePicker } from "antd";
 
 const SelectDateGroup = ({
@@ -7,8 +8,7 @@ const SelectDateGroup = ({
   placeholder,
   value,
   onChange,
-  error,
-  form
+  error
 }) => {
   return (
     <Form.Item label={label} validateStatus={error && "error"} help={error}>
@@ -23,4 +23,15 @@ const SelectDateGroup = ({
     </Form.Item>
   );
 };
+
+SelectDateGroup.propTypes = {
+  name: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
+  error: PropTypes.string,
+
+  onChange: PropTypes.func.isRequired
+};
+
 export default Form.create({ name: "register" })(SelectDateGroup);

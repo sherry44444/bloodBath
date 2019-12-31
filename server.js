@@ -14,13 +14,10 @@ const mongoUri =
     : process.env.MONGO_URI_PROD;
 
 mongoose
-  .connect(
-    "mongodb+srv://admin:admin@cluster0-i4u1s.mongodb.net/test?retryWrites=true&w=majority",
-    {
-      useNewUrlParser: true,
-      useCreateIndex: true
-    }
-  )
+  .connect("mongodb://localhost:27017/fucku", {
+    useNewUrlParser: true,
+    useCreateIndex: true
+  })
   .then(() => {
     console.log("succesful");
   })

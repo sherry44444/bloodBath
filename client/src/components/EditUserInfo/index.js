@@ -1,13 +1,16 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Form, Button, Typography } from "antd";
-import Spinner from "../Layout/Spinner/";
 import { getCurrentUser, editUser } from "../../actions/user";
+
 import FormInputGroup from "../Common/FormInputGroup";
 import SelectDateGroup from "../Common/SelectDateGroup";
 import SelectListGroup from "../Common/SelectListGroup";
+
 import { genderOptions, bloodTypeOptions } from "../../common-data/OptionList";
 import moment from "moment";
+import Spinner from "../Layout/Spinner/";
 import "./style.scss";
 
 const { Title } = Typography;
@@ -194,12 +197,19 @@ class EditUserInfo extends Component {
     return <div className="edit-page-container">{content}</div>;
   }
 }
+
+EditUserInfo.propTypes = {
+  user: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
+  getCurrentUser: PropTypes.func.isRequired,
+  editUser: PropTypes.func.isRequired
+};
+
 const mapStateToProps = state => ({
   user: state.users,
   errors: state.errors
 });
 
-export default connect(
-  mapStateToProps,
-  { getCurrentUser, editUser }
-)(EditUserInfo);
+export default connect(mapStateToProps, { getCurrentUser, editUser })(
+  EditUserInfo
+);

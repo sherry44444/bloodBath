@@ -1,20 +1,45 @@
+@import url("https://fonts.googleapis.com/css?family=Dancing+Script&display=swap");
 .login-page {
   &__content {
     position: absolute;
     top: 100px;
-    left: 40px;
+    left: 60px;
     font-size: 30px;
+    @media all and (max-width: 860px) {
+      display: block;
+      position: relative;
+      left: auto;
+      top: 25px;
+    }
+    h1 {
+      font-size: 70px;
+      font-family: "Dancing Script", cursive;
+    }
+    p {
+      font-size: 50px;
+      font-family: "Dancing Script", cursive;
+      display: block;
+      margin: 0;
+      @media all and (max-width: 860px) {
+        display: none;
+      }
+    }
   }
   &__form-container {
     float: right;
     margin-right: 100px;
     margin-top: 100px;
-    min-width: 280px;
-    min-height: 400px;
+    width: 280px;
+    height: 400px;
     background: white;
     padding: 60px 20px 0px 20px;
     border: 1px solid rgb(207, 204, 204);
     border-radius: 10px;
+    @media all and (max-width: 860px) {
+      float: none;
+      margin: auto;
+      margin-bottom: 50px;
+    }
 
     &__login-form {
       position: relative;

@@ -1,50 +1,40 @@
+//common
+%info-page-shared {
+  z-index: 1;
+  position: absolute;
+  margin: auto;
+  top: 50px;
+  left: 30%;
+  height: 40%;
+  width: 40%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .mission {
   height: 100vh;
   &__hero-image {
-    position: absolute;
-    margin: auto;
+    @extend %info-page-shared;
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
       url("../../image//mission-pic.jpg");
-    top: 50px;
-    left: 30%;
-    height: 40%;
-    width: 40%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
   }
 }
 
 .vision {
   height: 100vh;
   &__hero-image {
-    position: absolute;
-    margin: auto;
+    @extend %info-page-shared;
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
       url("../../image//vision-pic.jpg");
-    top: 50px;
-    left: 30%;
-    height: 40%;
-    width: 40%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
   }
 }
 .about {
   height: 100vh;
   &__hero-image {
-    position: absolute;
-    margin: auto;
+    @extend %info-page-shared;
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
       url("../../image//about-pic.jpg");
-    top: 50px;
-    left: 30%;
-    height: 40%;
-    width: 40%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
   }
 }
 
@@ -58,7 +48,6 @@
   }
 
   &__content-container {
-    z-index: -1;
     top: 200px;
     width: 50%;
     position: relative;

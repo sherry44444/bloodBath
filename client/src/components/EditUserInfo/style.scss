@@ -4,6 +4,9 @@
     position: relative;
     top: 50px;
     left: 15%;
+    @media all and (max-width: 600px) {
+      left: 7%;
+    }
     &__title {
       position: relative;
       text-align: left;
@@ -13,6 +16,9 @@
     &__btn {
       position: relative;
       left: 34%;
+      @media all and (max-width: 600px) {
+        left: auto;
+      }
     }
   }
 }

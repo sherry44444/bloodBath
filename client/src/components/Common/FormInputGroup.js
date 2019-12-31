@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Form, Input, Icon } from "antd";
 
 const FormInputGroup = ({
@@ -25,6 +26,19 @@ const FormInputGroup = ({
       />
     </Form.Item>
   );
+};
+
+FormInputGroup.propTypes = {
+  name: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  iconType: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
+  error: PropTypes.string,
+  style: PropTypes.object,
+
+  onChange: PropTypes.func.isRequired
 };
 
 export default Form.create({ name: "normal_login" })(FormInputGroup);

@@ -10,12 +10,6 @@ router.get("/:donationId", donationController.getDonationById);
 router.delete("/:donationId", authenticate, donationController.deleteDonation);
 router.put("/:donationId", authenticate, donationController.updateDonationById);
 router.put(
-  "/book-donation/:donationId",
-  authenticate,
-  authorize(["passenger"]),
-  donationController.bookDonation
-);
-router.put(
   "/finish-donation/:donationId",
   authenticate,
   donationController.finishDonation
