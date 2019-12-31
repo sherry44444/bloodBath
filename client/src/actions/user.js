@@ -24,7 +24,7 @@ import {
 export const getCurrentUser = () => {
   return dispatch => {
     axios
-      .get("http://localhost:8888/api/users/")
+      .get("/api/users/")
       .then(res => {
         dispatch({
           type: GET_USER,
@@ -38,7 +38,7 @@ export const getCurrentUser = () => {
 export const editUser = (data, history) => {
   return dispatch => {
     axios
-      .put(`http://localhost:8888/api/users/`, data)
+      .put(`/api/users/`, data)
       .then(res => {
         dispatch({
           type: GET_ERRORS,
@@ -61,7 +61,7 @@ export const deleteUser = history => {
   return dispatch => {
     localStorage.removeItem("token");
     axios
-      .delete("http://localhost:8888/api/users/")
+      .delete("/api/users/")
       .then(res => {
         dispatch({ type: DELETE_USER });
         setHeaders({});
@@ -82,7 +82,7 @@ export const clearCurrentProfile = () => {
 export const uploadAvatar = (formData, config) => {
   return dispatch => {
     axios
-      .post("http://localhost:8888/api/users/upload-avatar", formData, config)
+      .post("/api/users/upload-avatar", formData, config)
       .then(res => console.log(res))
       .catch(err => console.log(err));
   };
